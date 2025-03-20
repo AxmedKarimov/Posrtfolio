@@ -9,12 +9,15 @@ export default function Home() {
           Assalomu aleykum, Men <br />
           <span className="text-green-800">Karimov Axmed</span>
         </h1>
-        <p className="text-center text-2xl text-neutral-300">
+        <p className="text-center text-2xl text-neutral-300 mb-3">
           Veb dasturchi va dizayner sifatida natijaga yo'naltirilgan ishchi.
           Veb- <br />
           saytlar va veb-ilovalarni yaratish va boshqarish orqali umumiy <br />
           mahsulot muvaffaqiyatiga erishish maqsadimdir.
         </p>
+        <button className="mx-auto text-center block pb-2 pt-2 ps-7 pe-7 bg-green-800 rounded-lg text-white text-xl">
+          Loyihalar
+        </button>
       </div>
     </div>
   );

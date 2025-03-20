@@ -16,7 +16,7 @@ export default function AboutPage() {
 
   const clients = [
     { name: "Webdizayn", logo: "/client (1).svg" },
-    { name: "More Market", logo: "/client (2).svg" },
+    { name: "More Market", logo: "/client (2  ).svg" },
   ];
 
   const skills = [
