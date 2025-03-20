@@ -4,7 +4,7 @@ import { IoMenu } from "react-icons/io5";
 
 export default function Navbar() {
   return (
-    <div className="w-full h-[80px] border  bg-neutral-800 flex items-center justify-between p-4">
+    <div className="w-full h-[80px] border-b-neutral-700 border-b-2 bg-neutral-800 flex items-center justify-between p-4">
       <div className="flex gap-6">
         <IoMenu className="text-white" size={33} />
         <h1 className="text-center text-white text-2xl font-bold">

@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+.status {
+  display: flex;
+  padding: 3px 5px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.layout {
+  width: 100%;
+  height: 100%;
+  background-image: url("/Mask group.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
