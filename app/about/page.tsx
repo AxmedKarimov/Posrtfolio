@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 export default function AboutPage() {
@@ -16,7 +17,7 @@ export default function AboutPage() {
 
   const clients = [
     { name: "Webdizayn", logo: "/client (1).svg" },
-    { name: "More Market", logo: "/client (2  ).svg" },
+    { name: "More Market", logo: "/client (2).svg" },
   ];
 
   const skills = [
@@ -47,7 +48,7 @@ export default function AboutPage() {
       <h1 className="text-3xl md:text-4xl font-bold text-green-400">
         Men haqimda
       </h1>
-      <p className="mt-4 text-gray-300 max-w-2xl text-start">
+      <p className="mt-4 text-gray-300 max-w-2xl text-start mb-6">
         Men Karimov Axmed veb dasturchisiman. Yoshim 16 da, Bucoro viloyati
         Kogon shahrida tug'ilganman. Qiziqarli, ko’p funksionallika ega bo’lgan
         va kuchli dizaynga ega bo’lgan dasturlar yaratishga qiziqaman.
@@ -64,9 +65,12 @@ export default function AboutPage() {
           buyurishingiz mumkin.
         </span>
       </p>
-      <button className="mt-6 px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">
+      <Link
+        href={"/contact"}
+        className="mt-5 px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+      >
         Bog‘lanish
-      </button>
+      </Link>
 
       {/* Asbob-uskunalar */}
       <section className="mt-14">
