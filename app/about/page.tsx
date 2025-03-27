@@ -1,24 +1,44 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createClient } from "@/supabase/client";
+
+
+interface Tool {
+  id: number;
+  name: string;
+  img: string;
+}
+
+interface Client {
+  id: number;
+  name: string;
+  img: string;
+}
 
 export default function AboutPage() {
-  const tools = [
-    { name: "HTML5", icon: "/html-5 1@2x.png" },
-    { name: "CSS3", icon: "/css 1.svg" },
-    { name: "JavaScript", icon: "/js 1.svg" },
-    { name: "Figma", icon: "/figma 1.svg" },
-    { name: "React", icon: "/react 1.svg" },
-    { name: "Tailwind", icon: "/tailwind 1.svg" },
-    { name: "Swiper", icon: "/swiper-logo 1.svg" },
-    { name: "UID", icon: "/uid.svg" },
-  ];
+  const supabase = createClient();
+  const [tools, setTools] = useState<Tool[]>([]);
+  const [clients, setClients] = useState<Client[]>([]);
 
-  const clients = [
-    { name: "Webdizayn", logo: "/client (1).svg" },
-    { name: "More Market", logo: "/client (2).svg" },
-  ];
+  useEffect(() => {
+    async function fetchData() {
+      const { data: toolsData, error: toolsError } = await supabase
+        .from("tools")
+        .select("*");
+
+      if (!toolsError && toolsData) setTools(toolsData);
+
+      const { data: clientsData, error: clientsError } = await supabase
+        .from("clients")
+        .select("*");
+
+      if (!clientsError && clientsData) setClients(clientsData);
+    }
+
+    fetchData();
+  }, [supabase]);
 
   const skills = [
     {
@@ -50,17 +70,14 @@ export default function AboutPage() {
       </h1>
       <p className="mt-4 text-gray-300 max-w-2xl text-start mb-6">
         Men Karimov Axmed veb dasturchisiman. Yoshim 16 da, Bucoro viloyati
-        Kogon shahrida tug'ilganman. Qiziqarli, ko’p funksionallika ega bo’lgan
-        va kuchli dizaynga ega bo’lgan dasturlar yaratishga qiziqaman.
+        Kogon shahrida tug‘ilganman. Qiziqarli, ko‘p funksionallikga ega bo‘lgan
+        va kuchli dizaynga ega bo‘lgan dasturlar yaratishga qiziqaman.
         <br />
         <br />
         <span className="mt-2">
-          Mening vazifam veb saytni foydalanuvchilarga qulay, sayt dizayni
-          foydalanuvchilarga jalb qiluvchi lekin ayni paytda tezkor bo'lishini
-          taminlashdir va saytni moslashuvchan kodlar bilan yaratishdir! Mening
-          maqsadim veb sayt foydalanuvchilariga barcha qismlarini intuitiv va
-          qulay bo'lishga harakat qilishga qaratilgan. Agar sizga men yaratgan
-          loyihalarim qiziq bo’lsa,{" "}
+          Mening vazifam veb-saytni foydalanuvchilarga qulay, sayt dizayni jalb
+          qiluvchi lekin ayni paytda tezkor bo‘lishini ta’minlashdir. Agar sizga
+          men yaratgan loyihalarim qiziq bo‘lsa,{" "}
           <span className="text-green-400">Loyihalar</span> sahifasiga tashrif
           buyurishingiz mumkin.
         </span>
@@ -76,12 +93,12 @@ export default function AboutPage() {
       <section className="mt-14">
         <h2 className="text-2xl font-bold text-green-400">Asbob-uskunalar</h2>
         <div className="grid grid-cols-4 gap-6 mt-4">
-          {tools.map((tool, index) => (
+          {tools.map((tool) => (
             <div
-              key={index}
+              key={tool.id}
               className="bg-gray-900 p-4 rounded-lg flex flex-col items-center"
             >
-              <img src={tool.icon} alt={tool.name} className="w-12 h-12" />
+              <img src={tool.img} alt={tool.name} className="w-12 h-12" />
               <p className="mt-2">{tool.name}</p>
             </div>
           ))}
@@ -118,12 +135,12 @@ export default function AboutPage() {
       <section className="mt-10">
         <h2 className="text-2xl font-bold text-green-400">Mijozlar</h2>
         <div className="grid grid-cols-3 gap-6 mt-4">
-          {clients.map((client, index) => (
+          {clients.map((client) => (
             <div
-              key={index}
+              key={client.id}
               className="bg-gray-900 p-4 rounded-lg flex flex-col items-center"
             >
-              <img src={client.logo} alt={client.name} className="w-16 h-16" />
+              <img src={client.img} alt={client.name} className="w-16 h-16" />
               <p className="mt-2">{client.name}</p>
             </div>
           ))}
