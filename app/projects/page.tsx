@@ -96,9 +96,6 @@ const Projects: React.FC = () => {
 
 export default Projects;
 
-// -------------------
-// ✅ <ProjectCard /> komponenti tuzatilgan
-// -------------------
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
 
