@@ -18,7 +18,7 @@ export default function Admin() {
             href={"/addTools"}
             className="mt-4 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
           >
-            Uskuna qo'shish
+            Uskuna qoshish
           </Link>
         </div>
 
@@ -30,7 +30,7 @@ export default function Admin() {
             href={"./addProject"}
             className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
-            Project qo'shish
+            Project qoshish
           </Link>
         </div>
 
@@ -42,7 +42,7 @@ export default function Admin() {
             href={"/addClient"}
             className="mt-4 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
           >
-            Mijoz qo'shish
+            Mijoz qoshish
           </Link>
         </div>
       </div>

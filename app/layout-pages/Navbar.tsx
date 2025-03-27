@@ -15,7 +15,7 @@ export default function Navbar() {
     { name: "Bosh sahifa", path: "/" },
     { name: "Haqida", path: "/about" },
     { name: "Loyihalar", path: "/projects" },
-    { name: "Bog'lanish", path: "/contact" },
+    { name: "Boglanish", path: "/contact" },
   ];
 
   return (
@@ -36,7 +36,7 @@ export default function Navbar() {
         </Link>
       </div>
 
-      {/* Katta ekranda ko'rinadigan navbar */}
+      {/* Katta ekranda korinadigan navbar */}
       <ul className="hidden lg:flex gap-6 text-white text-lg font-light">
         {navLinks.map((link, index) => (
           <li key={index}>

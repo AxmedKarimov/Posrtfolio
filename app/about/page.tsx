@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { createClient } from "@/supabase/client";
 
-
 interface Tool {
   id: number;
   name: string;
@@ -48,7 +47,7 @@ export default function AboutPage() {
     },
     {
       name: "Dizayn",
-      description: "Kuchli dizayn va kichik detallarga e'tibor berish",
+      description: "Kuchli dizayn va kichik detallarga etibor berish",
       icon: "/image wrapper (1).svg",
     },
     {

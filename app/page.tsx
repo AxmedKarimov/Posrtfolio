@@ -16,8 +16,8 @@ export default function Home() {
           </span>
         </h1>
         <p className="text-center text-2xl text-neutral-300 mb-3 animate-fade-cycle delay-200">
-          Veb dasturchi va dizayner sifatida natijaga yo'naltirilgan ishchi.
-          Veb- <br />
+          Veb dasturchi va dizayner sifatida natijaga yonaltirilgan ishchi. Veb-{" "}
+          <br />
           saytlar va veb-ilovalarni yaratish va boshqarish orqali umumiy <br />
           mahsulot muvaffaqiyatiga erishish maqsadimdir.
         </p>

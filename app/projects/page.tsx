@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/supabase/client";
@@ -18,7 +18,7 @@ const Projects: React.FC = () => {
   const [projects, setProjects] = useState<Project[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedCategory, setSelectedCategory] = useState<string>("Barchasi");
-
+ console.log(setSelectedCategory);
   useEffect(() => {
     const fetchProjects = async () => {
       setLoading(true);
@@ -39,7 +39,7 @@ const Projects: React.FC = () => {
     };
 
     fetchProjects();
-  }, []);
+  }, [supabase]);
 
   if (loading) {
     return (
