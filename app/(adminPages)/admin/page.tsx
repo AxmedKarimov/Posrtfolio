@@ -35,9 +35,12 @@ export default function Admin() {
           <h1 className="text-white text-4xl font- mb-4">Mijozlar</h1>
           <h1 className="text-white text-3xl font-semibold mb-4">2</h1>
 
-          <button className="mt-4 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+          <Link
+            href={"/addClient"}
+            className="mt-4 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+          >
             Mijoz qo'shish
-          </button>
+          </Link>
         </div>
       </div>
     </div>
