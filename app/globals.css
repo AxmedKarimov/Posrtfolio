@@ -22,3 +22,16 @@
   background-repeat: no-repeat;
   overflow-y: auto;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  outline: none;
+}
+
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

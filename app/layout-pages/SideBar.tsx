@@ -89,7 +89,7 @@ export default function SideBar() {
       {/* Toggle Button (Always Visible) */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-7 me-2 h-7 rounded-full cursor-pointer  border-white bg-neutral-800 text-white text-3xl flex items-center justify-center  duration-400 mt-[100%]"
+        className="w-7 me-2 h-7 rounded-full cursor-pointer  border-white bg-neutral-800 text-white text-3xl flex items-center justify-center  duration-400 mt-[100%] "
       >
         {isOpen ? "<" : ">"}
       </button>

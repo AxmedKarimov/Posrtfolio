@@ -19,7 +19,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="w-full h-[80px] border-b-2 border-neutral-700 bg-neutral-800 flex items-center justify-between px-6">
+    <nav className="w-full h-[80px] border-b-2 border-neutral-700 bg-neutral-800 flex items-center justify-between px-6 relative">
       {/* Logo va Menyu tugmasi */}
       <div className="flex items-center gap-6 z-50">
         <button
@@ -28,9 +28,12 @@ export default function Navbar() {
         >
           {isOpen ? <IoClose size={33} /> : <IoMenu size={33} />}
         </button>
-        <h1 className="text-white text-2xl font-bold">
+        <Link
+          href={"/"}
+          className="text-white text-2xl font-bold cursor-pointer"
+        >
           Karimov <span className="text-green-600">Axmed</span>
-        </h1>
+        </Link>
       </div>
 
       {/* Katta ekranda ko'rinadigan navbar */}
@@ -61,18 +64,18 @@ export default function Navbar() {
 
       {/* Mobil menyu */}
       <div
-        className={`fixed top-0 left-100 h-full w-[250px] bg-neutral-800 p-5 shadow-md transition-transform duration-300 ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:hidden`}
+        className={`fixed top-0 left-0  w-[200px] h-[400px]  bg-neutral-800 bg-opacity-90 flex flex-col items-center justify-center transition-transform duration-300 ${
+          isOpen ? "translate-y-0 mt-18" : "-translate-y-[500px] "
+        } lg:hidden z-50`}
       >
         {/* Mobil menyu tarkibi */}
-        <ul className="flex flex-col gap-5 mt-10 text-white text-lg">
+        <ul className="flex flex-col gap-6 text-white text-2xl font-medium">
           {navLinks.map((link, index) => (
             <li key={index}>
               <Link
                 href={link.path}
                 className="hover:text-green-400 block py-2"
-                onClick={() => setIsOpen(false)}
+                onClick={() => setIsOpen(false)} // Link bosilganda menyu yopiladi
               >
                 {link.name}
               </Link>
@@ -83,12 +86,10 @@ export default function Navbar() {
               href="https://github.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2"
+              className="flex items-center gap-3 hover:text-green-400 transition"
+              onClick={() => setIsOpen(false)}
             >
-              <FaSquareGithub
-                size={27}
-                className="hover:text-green-400 transition"
-              />
+              <FaSquareGithub size={30} />
               <span>GitHub</span>
             </a>
           </li>
