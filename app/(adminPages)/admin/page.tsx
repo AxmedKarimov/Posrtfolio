@@ -14,9 +14,12 @@ export default function Admin() {
             Asbob uskunalar
           </h1>
           <h1 className="text-white text-3xl font-semibold mb-4">2</h1>
-          <button className="mt-4 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+          <Link
+            href={"/addTools"}
+            className="mt-4 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+          >
             Uskuna qo'shish
-          </button>
+          </Link>
         </div>
 
         <div className="w-full h-60 bg-neutral-800  p-6 rounded-2xl shadow-lg mb-4 hover:shadow-2xl transition-shadow">
