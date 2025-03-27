@@ -6,7 +6,7 @@ type Project = {
   id: number;
   name: string;
   img: string;
-  xeshtegs: string;
+  tags: string[];
   status: string;
   link: string;
 };
@@ -19,7 +19,7 @@ export default function Projects() {
     id: 0,
     name: "",
     img: "",
-    xeshtegs: "",
+    tags: [],
     status: "active",
     link: "",
   });
@@ -27,8 +27,16 @@ export default function Projects() {
   useEffect(() => {
     async function fetchProjects() {
       const { data, error } = await supabase.from("projects").select("*");
-      if (error) console.error("Supabase error:", error.message);
-      else setProjects(data as Project[]);
+      if (error) {
+        console.error("Supabase error:", error.message);
+      } else {
+        setProjects(
+          data.map((p) => ({
+            ...p,
+            tags: p.tags ? p.tags : [],
+          }))
+        );
+      }
       setLoading(false);
     }
     fetchProjects();
@@ -59,15 +67,24 @@ export default function Projects() {
   async function addProject() {
     const { data, error } = await supabase
       .from("projects")
-      .insert([newProject])
+      .insert([
+        {
+          ...newProject,
+          tags: `{${newProject.tags.join(",")}}`,
+        },
+      ])
       .select();
-    if (error) return console.error("Qo‘shishda xatolik:", error.message);
-    setProjects([...projects, data[0]]);
+
+    if (error) {
+      return console.error("Qo‘shishda xatolik:", error.message);
+    }
+
+    setProjects([...projects, { ...data[0], tags: data[0].tags }]);
     setNewProject({
       id: 0,
       name: "",
       img: "",
-      xeshtegs: "",
+      tags: [],
       status: "active",
       link: "",
     });
@@ -76,9 +93,12 @@ export default function Projects() {
   async function updateProject(project: Project) {
     const { error } = await supabase
       .from("projects")
-      .update(project)
+      .update({ ...project, tags: `{${project.tags.join(",")}}` })
       .match({ id: project.id });
-    if (error) return console.error("Tahrirlashda xatolik:", error.message);
+
+    if (error) {
+      return console.error("Tahrirlashda xatolik:", error.message);
+    }
     setProjects(projects.map((p) => (p.id === project.id ? project : p)));
   }
 
@@ -111,11 +131,11 @@ export default function Projects() {
         />
         <input
           type="text"
-          placeholder="Hashtag"
+          placeholder="Hashtaglarni vergul bilan yozing"
           className="p-2 w-full rounded bg-gray-700 text-white mb-2"
-          value={newProject.xeshtegs}
+          value={newProject.tags.join(", ")}
           onChange={(e) =>
-            setNewProject({ ...newProject, xeshtegs: e.target.value })
+            setNewProject({ ...newProject, tags: e.target.value.split(", ") })
           }
         />
         <input
@@ -165,59 +185,11 @@ export default function Projects() {
                     onChange={(e) => handleImageUpload(e, project.id)}
                   />
                 </td>
+                <td className="border border-gray-700 p-2">{project.name}</td>
                 <td className="border border-gray-700 p-2">
-                  <input
-                    type="text"
-                    value={project.name}
-                    className="bg-gray-700 p-1 rounded text-white"
-                    onChange={(e) =>
-                      setProjects((prev) =>
-                        prev.map((p) =>
-                          p.id === project.id
-                            ? { ...p, name: e.target.value }
-                            : p
-                        )
-                      )
-                    }
-                    onBlur={() => updateProject(project)}
-                  />
+                  {project.tags.join(", ")}
                 </td>
-                <td className="border border-gray-700 p-2">
-                  <input
-                    type="text"
-                    value={project.xeshtegs}
-                    className="bg-gray-700 p-1 rounded text-white"
-                    onChange={(e) =>
-                      setProjects((prev) =>
-                        prev.map((p) =>
-                          p.id === project.id
-                            ? { ...p, xeshtegs: e.target.value }
-                            : p
-                        )
-                      )
-                    }
-                    onBlur={() => updateProject(project)}
-                  />
-                </td>
-                <td className="border border-gray-700 p-2">
-                  <select
-                    value={project.status}
-                    className="bg-gray-700 p-1 rounded text-white"
-                    onChange={(e) =>
-                      setProjects((prev) =>
-                        prev.map((p) =>
-                          p.id === project.id
-                            ? { ...p, status: e.target.value }
-                            : p
-                        )
-                      )
-                    }
-                    onBlur={() => updateProject(project)}
-                  >
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                  </select>
-                </td>
+                <td className="border border-gray-700 p-2">{project.status}</td>
                 <td className="border border-gray-700 p-2">
                   <a
                     href={project.link}
