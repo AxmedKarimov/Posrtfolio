@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/supabase/client";
@@ -18,7 +18,7 @@ const Projects: React.FC = () => {
   const [projects, setProjects] = useState<Project[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedCategory, setSelectedCategory] = useState<string>("Barchasi");
- console.log(setSelectedCategory);
+
   useEffect(() => {
     const fetchProjects = async () => {
       setLoading(true);
@@ -64,8 +64,8 @@ const Projects: React.FC = () => {
                 selectedCategory === "Barchasi" ||
                 project.status === selectedCategory
             )
-            .map((project) => (
-              <ProjectCard key={project.id} project={project} />
+            .map((project, index) => (
+              <ProjectCard key={`${project.id}-${index}`} project={project} />
             ))
         ) : (
           <p className="text-gray-400">
@@ -137,7 +137,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       <div className="mt-2 flex flex-wrap gap-2">
         {project.tags?.map((tag, index) => (
           <span
-            key={`${project.id}-${tag}-${index}`}
+            key={`${project.id}-tag-${index}-${tag}`}
             className="bg-gray-800 text-xs px-2 py-1 rounded-md text-gray-300 border border-gray-700"
           >
             #{tag}

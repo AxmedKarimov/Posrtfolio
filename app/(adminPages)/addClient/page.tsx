@@ -1,6 +1,7 @@
 "use client";
 import { createClient } from "@/supabase/client";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 type Client = {
   id: number;
@@ -22,7 +23,7 @@ export default function Clients() {
       setLoading(false);
     }
     fetchClients();
-  }, []);
+  }, [supabase]);
 
   const handleImageUpload = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -62,7 +63,7 @@ export default function Clients() {
   }
 
   return (
-    <div className="p-6 min-h-screen  text-white">
+    <div className="p-6 min-h-screen text-white">
       <h1 className="text-4xl font-bold mb-8">Clients</h1>
 
       {/* 📌 Yangi client qo‘shish */}
@@ -105,11 +106,19 @@ export default function Clients() {
             {clients.map((client) => (
               <tr key={client.id} className="text-center bg-gray-800">
                 <td className="border border-gray-700 p-2">
-                  <img
-                    src={client.img}
-                    alt={client.name}
-                    className="h-16 w-16 object-cover rounded-lg"
-                  />
+                  {client.img ? (
+                    <Image
+                      src={client.img}
+                      alt={client.name}
+                      width={64}
+                      height={64}
+                      className="object-cover rounded-lg"
+                    />
+                  ) : (
+                    <div className="h-16 w-16 bg-gray-700 rounded-lg flex items-center justify-center text-gray-400">
+                      No Image
+                    </div>
+                  )}
                   <input
                     type="file"
                     accept="image/*"

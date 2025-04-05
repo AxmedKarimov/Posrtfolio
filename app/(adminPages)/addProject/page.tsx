@@ -1,6 +1,7 @@
 "use client";
 import { createClient } from "@/supabase/client";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 type Project = {
   id: number;
@@ -90,18 +91,6 @@ export default function Projects() {
     });
   }
 
-  async function updateProject(project: Project) {
-    const { error } = await supabase
-      .from("projects")
-      .update({ ...project, tags: `{${project.tags.join(",")}}` })
-      .match({ id: project.id });
-
-    if (error) {
-      return console.error("Tahrirlashda xatolik:", error.message);
-    }
-    setProjects(projects.map((p) => (p.id === project.id ? project : p)));
-  }
-
   async function deleteProject(id: number) {
     await supabase.from("projects").delete().match({ id });
     setProjects(projects.filter((p) => p.id !== id));
@@ -171,13 +160,15 @@ export default function Projects() {
             </tr>
           </thead>
           <tbody>
-            {projects.map((project) => (
-              <tr key={project.id} className="text-center bg-gray-800">
+            {projects.map((project, index) => (
+              <tr key={index} className="text-center bg-gray-800">
                 <td className="border border-gray-700 p-2">
-                  <img
+                  <Image
                     src={project.img}
                     alt={project.name}
-                    className="h-16 w-16 object-cover rounded-lg"
+                    width={64}
+                    height={64}
+                    className="rounded-lg"
                   />
                   <input
                     type="file"

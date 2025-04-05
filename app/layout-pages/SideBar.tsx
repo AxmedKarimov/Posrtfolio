@@ -64,7 +64,7 @@ export default function SideBar() {
               <div>
                 <h1 className="text-white text-1 mb-1">Telegram</h1>
                 <a className="text-neutral-400" href="#">
-                  axmedkarimov34@gmail.com
+                    axmedkarimov34@gmail.com
                 </a>
               </div>
             </div>

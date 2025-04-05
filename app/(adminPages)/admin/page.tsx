@@ -8,7 +8,7 @@ export default function Admin() {
   const router = useRouter();
 
   const checkPassword = () => {
-    if (password === "menAdminman") {
+    if (password === "manAdminman") {
       router.push("/dashboard");
     } else {
       router.push("/");

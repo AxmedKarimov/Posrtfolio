@@ -1,5 +1,6 @@
 "use client";
 import { createClient } from "@/supabase/client";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 type Tool = {
@@ -96,7 +97,7 @@ export default function Tools() {
   }
 
   return (
-    <div className="p-6 min-h-screen  text-white">
+    <div className="p-6 min-h-screen text-white">
       <h1 className="text-4xl font-bold mb-8">Tools</h1>
 
       {/* 🔥 ADD TOOL FORM */}
@@ -116,10 +117,12 @@ export default function Tools() {
           className="mb-2"
         />
         {newTool.img && (
-          <img
+          <Image
             src={newTool.img}
             alt="Preview"
-            className="h-16 w-16 object-cover rounded-lg"
+            width={64}
+            height={64}
+            className="object-cover rounded-lg"
           />
         )}
         <button
@@ -153,17 +156,21 @@ export default function Tools() {
                         accept="image/*"
                         onChange={(e) => handleImageUpload(e, true)}
                       />
-                      <img
+                      <Image
                         src={editData.img}
                         alt={tool.name}
-                        className="h-16 w-16 object-cover rounded-lg"
+                        width={64}
+                        height={64}
+                        className="object-cover rounded-lg"
                       />
                     </>
                   ) : (
-                    <img
+                    <Image
                       src={tool.img}
                       alt={tool.name}
-                      className="h-16 w-16 object-cover rounded-lg"
+                      width={64}
+                      height={64}
+                      className="object-cover rounded-lg"
                     />
                   )}
                 </td>
